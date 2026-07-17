@@ -9,35 +9,46 @@ st.set_page_config(page_title="AI ATS Analyzer", page_icon="🎯", layout="cente
 # 2. Custom CSS (Integrated Styling + Hiding Streamlit Branding)
 st.markdown("""
     <style>
-    /* Hiding Streamlit Branding/System UI */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display:none;}
-    
-    /* Global Background */
-    .stApp { background-color: #ffffff; }
-    
-    /* Input Card Styling */
+    /* 1. HIDE ALL SYSTEM UI (Branding & Menu) */
+    [data-testid="stToolbar"], [data-testid="stHeader"], #MainMenu, footer, .stDeployButton {
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    /* 2. FORCE BACKGROUND COLOR (The "Flash" white fix) */
+    [data-testid="stAppViewContainer"] {
+        background-color: #ffffff !important;
+    }
+
+    /* 3. FORCE FONT AND TEXT COLOR */
+    body, [data-testid="stAppViewContainer"], .stMarkdown, .stText {
+        font-family: 'Inter', sans-serif !important;
+        color: #1e293b !important;
+    }
+
+    /* 4. INPUT CARD OVERRIDE */
     .input-card { 
-        background: #f8fafc; 
-        padding: 2rem; 
-        border-radius: 20px; 
-        border: 1px solid #e2e8f0;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        background: #f8fafc !important; 
+        padding: 2rem !important; 
+        border-radius: 20px !important; 
+        border: 1px solid #e2e8f0 !important;
+        margin-bottom: 2rem !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* 5. METRIC CARDS OVERRIDE */
+    [data-testid="stMetricValue"] {
+        font-size: 2rem !important;
+        color: #1e293b !important;
     }
     
-    /* Skill Pills */
-    .skill-pill { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; margin: 4px; font-weight: 500; }
-    .matched { background-color: #d1fae5; color: #065f46; border: 1px solid #34d399; }
-    .missing { background-color: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
-    
-    /* Metric Cards */
-    [data-testid="stMetricValue"] { font-size: 2rem !important; }
-    
-    /* Buttons */
-    .stButton>button { width: 100%; border-radius: 8px; font-weight: bold; }
+    /* 6. BUTTON OVERRIDE */
+    div.stButton > button {
+        background-color: #2563eb !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -117,4 +128,3 @@ if analyze_btn:
                 if os.path.exists(tfile.name): os.remove(tfile.name)
     else:
         st.warning("⚠️ Please provide both a Resume and Job Description to continue.")
-        
