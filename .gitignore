@@ -1,0 +1,21 @@
+# --- Python Specific ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Environment ---
+env/
+venv/
+.env
+
+# --- OS Specific ---
+.DS_Store      # Mac file
+Thumbs.db      # Windows file
+
+# --- IDE Settings (Best for team collaboration) ---
+.vscode/
+.idea/
+
+# --- Temporary/Log ---
+*.log
+*.tmp
