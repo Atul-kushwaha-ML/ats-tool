@@ -6,48 +6,61 @@ from pipeline.pipeline import ATSPipeline
 # 1. Page Config
 st.set_page_config(page_title="AI ATS Analyzer", page_icon="🎯", layout="centered")
 
-# 2. Custom CSS (Integrated Styling + Hiding Streamlit Branding)
 st.markdown("""
     <style>
-    /* 1. HIDE ALL SYSTEM UI (Branding & Menu) */
-    [data-testid="stToolbar"], [data-testid="stHeader"], #MainMenu, footer, .stDeployButton {
-        visibility: hidden !important;
-        display: none !important;
-    }
-
-    /* 2. FORCE BACKGROUND COLOR (The "Flash" white fix) */
-    [data-testid="stAppViewContainer"] {
-        background-color: #ffffff !important;
-    }
-
-    /* 3. FORCE FONT AND TEXT COLOR */
-    body, [data-testid="stAppViewContainer"], .stMarkdown, .stText {
-        font-family: 'Inter', sans-serif !important;
-        color: #1e293b !important;
-    }
-
-    /* 4. INPUT CARD OVERRIDE */
-    .input-card { 
-        background: #f8fafc !important; 
-        padding: 2rem !important; 
-        border-radius: 20px !important; 
-        border: 1px solid #e2e8f0 !important;
-        margin-bottom: 2rem !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-    }
-
-    /* 5. METRIC CARDS OVERRIDE */
-    [data-testid="stMetricValue"] {
-        font-size: 2rem !important;
-        color: #1e293b !important;
-    }
+    /* 1. HIDE ALL STREAMLIT SYSTEM UI */
+    #MainMenu, footer, header, .stDeployButton {visibility: hidden !important; display: none !important;}
     
-    /* 6. BUTTON OVERRIDE */
+    /* 2. PAGE BACKGROUND */
+    [data-testid="stAppViewContainer"] {
+        background-color: #fcfcfd !important;
+    }
+
+    /* 3. INPUT CARD (Modern Glassmorphism-ish Card) */
+    .input-card { 
+        background: #ffffff !important; 
+        padding: 2.5rem !important; 
+        border-radius: 24px !important; 
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03) !important;
+        margin-bottom: 2rem !important;
+    }
+
+    /* 4. BUTTON STYLING */
     div.stButton > button {
         background-color: #2563eb !important;
         color: white !important;
         border: none !important;
-        border-radius: 8px !important;
+        border-radius: 12px !important;
+        padding: 0.6rem 1.5rem !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+    div.stButton > button:hover {
+        background-color: #1d4ed8 !important;
+        transform: translateY(-2px);
+    }
+
+    /* 5. METRIC CARDS & HEADERS */
+    [data-testid="stMetricValue"] { font-size: 2.5rem !important; color: #1e293b !important; }
+    h1, h2, h3 { color: #0f172a !important; font-weight: 700 !important; }
+
+    /* 6. SKILL PILLS IMPROVEMENT */
+    .skill-pill { 
+        display: inline-block; 
+        padding: 8px 16px; 
+        border-radius: 12px; 
+        font-size: 0.85rem; 
+        margin: 5px; 
+        font-weight: 600; 
+        text-transform: capitalize;
+    }
+    .matched { background-color: #f0fdf4 !important; color: #166534 !important; border: 1px solid #bbf7d0 !important; }
+    .missing { background-color: #fef2f2 !important; color: #991b1b !important; border: 1px solid #fecaca !important; }
+    
+    /* 7. CONTAINER BORDER RADIUS */
+    [data-testid="stVerticalBlock"] > [style*="border:"] {
+        border-radius: 20px !important;
     }
     </style>
 """, unsafe_allow_html=True)
