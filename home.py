@@ -46,15 +46,7 @@ BENEFITS_RIGHT = [
     "📌 Easy to Use Interface",
 ]
  
-TESTIMONIALS = [
-    ("Software Engineer",
-     "This tool helped me identify missing keywords and "
-     "significantly improved my resume."),
-    ("ML Engineer",
-     "Very clean interface and excellent AI suggestions. "
-     "Perfect before applying for jobs."),
-]
- 
+
 CSS = """
 <style>
 #MainMenu, header, footer { visibility: hidden; }
@@ -216,14 +208,7 @@ def render_home() -> None:
             st.info(text)
     st.write("")
     st.write("")
- 
-    # Testimonials
-    _section_title("🌟 What Users Say")
-    for col, (role, quote) in zip(st.columns(len(TESTIMONIALS)), TESTIMONIALS):
-        with col:
-            _card("★★★★★", f'"{quote}"<br><br><b>- {role}</b>')
-    st.write("")
-    st.write("")
+
  
     # CTA
     _section_title("🚀 Ready to Improve Your Resume?")
